@@ -31,6 +31,6 @@ class Stemmer:
         return word
 
     def stem_words(self, list_of_words):
-        for word_index in range(list_of_words):
-            list_of_words[list_of_words] = self.stem_word(list_of_words[list_of_words])
+        for word_index in range(len(list_of_words)):
+            list_of_words[word_index] = self.stem_word(list_of_words[word_index])
         return list_of_words
