@@ -1,3 +1,4 @@
+# Stemmer class definition.
 class Stemmer:
     # Stores the words loaded from the words.txt file.
     words = []
