@@ -38,6 +38,7 @@ class Stemmer:
 
     # Returns the stemmed version of word.
     def stem_word(self, word):
+        word = word.lower()
         # If the word is already in the database, return it.
         if word in self.words:
             return word
