@@ -1,7 +1,7 @@
 # Stemmer class definition.
 class Stemmer:
     # Stores the words loaded from the words.txt file.
-    words = []
+    words = set()
     # Stores the suffixes loaded from the suffix.txt file.
     suffixes = []
 
@@ -25,7 +25,7 @@ class Stemmer:
             # Iterate over each line in the words.txt file
             for word in words_file:
                 # Trim the spaces and newline characters from the string before adding to the list.
-                self.words.append(word.strip())
+                self.words.add(word.strip())
 
     # Loads the suffixes from the suffix.txt file into memory.
     def load_suffixes(self):
@@ -35,7 +35,7 @@ class Stemmer:
             for suffix in suffix_file:
                 # Trim the spaces and newline characters from the string before adding to the list.
                 self.suffixes.append(suffix.strip())
-		
+
     # Removes one suffix at a time
     def suffix(self, word):
         # Iterate over the suffixes.
@@ -48,14 +48,15 @@ class Stemmer:
 
     # Returns the stemmed version of word.
     def stem_word(self, word):
-	# Change the word to lowercase.
+        # Change the word to lowercase.
         word = word.lower()
-	# Remove suffixes until word is in dictionary
+        # Remove suffixes until word is in dictionary
         while word not in self.words:
             new_word = self.suffix(word)
             if new_word != word:
                 word = new_word
-            else: break
+            else:
+                break
         # If it is not possible to apply stemming to that word, return it.
         return word
 
