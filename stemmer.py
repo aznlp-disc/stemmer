@@ -35,22 +35,27 @@ class Stemmer:
             for suffix in suffix_file:
                 # Trim the spaces and newline characters from the string before adding to the list.
                 self.suffixes.append(suffix.strip())
-
-    # Returns the stemmed version of word.
-    def stem_word(self, word):
-	# The the case of the word to lowercase.
-        word = word.lower()
-        # If the word is already in the database, return it.
-        if word in self.words:
-            return word
+		
+    # Removes one suffix at a time
+    def suffix(self, word):
         # Iterate over the suffixes.
         for suffix in self.suffixes:
             # If the word ends with the particular suffix, create a new word by removing that suffix.
             if word.endswith(suffix):
-                new_word = word[:word.rfind(suffix)]
-                # If new word is in the database, return it.
-                if new_word in self.words:
-                    return new_word
+                word = word[:word.rfind(suffix)]
+                break
+        return word
+
+    # Returns the stemmed version of word.
+    def stem_word(self, word):
+	# Change the word to lowercase.
+        word = word.lower()
+	# Remove suffixes until word is in dictionary
+        while word not in self.words:
+            new_word = self.suffix(word)
+            if new_word != word:
+                word = new_word
+            else: break
         # If it is not possible to apply stemming to that word, return it.
         return word
 
