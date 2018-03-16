@@ -55,13 +55,14 @@ class Stemmer:
     def stem_word(self, word):
         # Change the word to lowercase.
         word = word.lower()
+        nw = word
         # Remove suffixes until word is in dictionary
         while word not in self.words:
             new_word = self.suffix(word)
             if new_word != word:
                 word = new_word
             else:
-                return word
+                return nw
         # If it is not possible to apply stemming to that word, return it.
         return word
 
