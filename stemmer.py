@@ -65,6 +65,10 @@ class Stemmer:
             l=list(word); l[-1]='q'; return "".join(l)
         if word.endswith('iy') | word.endswith('üy') | word.endswith('əy'):
             l=list(word); l[-1]='k'; return "".join(l)
+        if word == 'ed':
+            l=list(word); l[1]='t'; return "".join(l)
+        if word == 'ged':
+            l=list(word); l[2]='t'; return "".join(l)
         
     # Returns the stemmed version of word.
     def stem_word(self, word):
