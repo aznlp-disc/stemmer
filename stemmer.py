@@ -38,12 +38,17 @@ class Stemmer:
 
     # Removes one suffix at a time
     def suffix(self, word):
+        for suffix in self.suffixes:
+            # If the word ends with the particular suffix, create a new word by removing that suffix.
+            if word.endswith(suffix) & (word[:word.rfind(suffix)] in self.words):
+                word = word[:word.rfind(suffix)]
+                return word
         # Iterate over the suffixes.
         for suffix in self.suffixes:
             # If the word ends with the particular suffix, create a new word by removing that suffix.
             if word.endswith(suffix):
                 word = word[:word.rfind(suffix)]
-                break
+                return word
         return word
 
     # Returns the stemmed version of word.
@@ -56,7 +61,7 @@ class Stemmer:
             if new_word != word:
                 word = new_word
             else:
-                break
+                return word
         # If it is not possible to apply stemming to that word, return it.
         return word
 
