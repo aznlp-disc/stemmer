@@ -51,6 +51,21 @@ class Stemmer:
                 return word
         return word
 
+    # Converts changing suffixes to original form
+    def converter(self, word):
+        if word.endswith('lığ') | word.endswith('luğ') | word.endswith('lağ') | word.endswith('cığ'):
+            l=list(word); l[-1]='q'; return "".join(l)
+        if word.endswith('liy') | word.endswith('lüy'):
+            l=list(word); l[-1]='k'; return "".join(l)
+        if word.endswith('cağ'):
+            l=list(word); l[-1]='q'; return "".join(l)
+        if word.endswith('cəy'):
+            l=list(word); l[-1]='k'; return "".join(l)
+        if word.endswith('ığ') | word.endswith('uğ') | word.endswith('ağ'):
+            l=list(word); l[-1]='q'; return "".join(l)
+        if word.endswith('iy') | word.endswith('üy') | word.endswith('əy'):
+            l=list(word); l[-1]='k'; return "".join(l)
+        
     # Returns the stemmed version of word.
     def stem_word(self, word):
         # Change the word to lowercase.
@@ -58,6 +73,8 @@ class Stemmer:
         nw = word
         # Remove suffixes until word is in dictionary
         while word not in self.words:
+            if self.converter(word) in self.words:
+                return self.converter(word)
             new_word = self.suffix(word)
             if new_word != word:
                 word = new_word
