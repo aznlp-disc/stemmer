@@ -4741,6 +4741,7 @@ azdözümlü
 azeffektli
 azeotrop
 azər
+azərbaycan
 azərbaycanca
 azərbaycançılıq
 azərbaycandilli
@@ -7385,6 +7386,7 @@ bildir
 bildirçin
 bildirçinbaz
 bildirçinbazlıq
+bildiril
 bildiriş
 bildirki
 bildirmə
@@ -29712,7 +29714,6 @@ isinişmə
 isiniş
 isinmə
 isin
-işin
 işıq
 işıqaparan
 işıqburaxma
@@ -69170,6 +69171,7 @@ vurdur
 vurğu
 vurğulama
 vurğula
+vurğulan
 vurğulu
 vurğun
 vurğuncasına
