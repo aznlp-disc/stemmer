@@ -1,3 +1,5 @@
+acaq
+əcək
 dakı
 dəki
 lar
@@ -12,6 +14,10 @@ ub
 im
 um
 üm
+nın
+nin
+nun
+nün
 ın
 in
 un
@@ -22,6 +28,8 @@ ul
 ül
 sı
 si
+su
+sü
 ı
 i
 u
@@ -71,8 +79,6 @@ aq
 ir
 ur
 ür
-acaq
-əcək
 ar
 ər
 a
@@ -97,3 +103,5 @@ m
 s
 y
 n
+mək
+maq
