@@ -7,10 +7,11 @@ class Tagger:
     def __init__(self, file):
         self.load_dict()
         nstem = self.tag(file)
-        print(nstem)
+        # print(nstem)
         stem = Stemmer().stem_words(nstem)
-        print(stem)
-        self.list_tags(stem)
+        # print(stem)
+        tags = self.list_tags(stem)
+        print(tags)
 
     def tag(self, file):
         with open(file, "r", encoding="utf8") as my_text:
@@ -46,7 +47,7 @@ class Tagger:
             except Exception:
                 tags.append((st, []))
 
-        print(tags)
+        return tags
 
 
 tagi = Tagger('yoxla.txt')
