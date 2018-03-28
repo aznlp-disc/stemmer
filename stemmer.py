@@ -12,7 +12,7 @@ class Stemmer:
         # Load suffixes from the suffix.txt file.
         self.load_suffixes()
 
-    # Destructor of the Stemmer class.
+    # Destructor of the Stemmer class.zz
     def __del__(self):
         # Clear both lists to free the memory space.
         self.words.clear()
@@ -40,7 +40,7 @@ class Stemmer:
     def suffix(self, word):
         for suffix in self.suffixes:
             # If the word ends with the particular suffix, create a new word by removing that suffix.
-            if word.endswith(suffix) & (word[:word.rfind(suffix)] in self.words):
+            if word.endswith(suffix) and (word[:word.rfind(suffix)] in self.words):
                 word = word[:word.rfind(suffix)]
                 return word
         # Iterate over the suffixes.
@@ -53,17 +53,17 @@ class Stemmer:
 
     # Converts changing suffixes to original form
     def converter(self, word):
-        if word.endswith('lığ') | word.endswith('luğ') | word.endswith('lağ') | word.endswith('cığ'):
+        if word.endswith('lığ') or word.endswith('luğ') or word.endswith('lağ') or word.endswith('cığ'):
             l=list(word); l[-1]='q'; return "".join(l)
-        if word.endswith('liy') | word.endswith('lüy'):
+        if word.endswith('liy') or word.endswith('lüy'):
             l=list(word); l[-1]='k'; return "".join(l)
         if word.endswith('cağ'):
             l=list(word); l[-1]='q'; return "".join(l)
         if word.endswith('cəy'):
             l=list(word); l[-1]='k'; return "".join(l)
-        if word.endswith('ığ') | word.endswith('uğ') | word.endswith('ağ'):
+        if word.endswith('ığ') or word.endswith('uğ') or word.endswith('ağ'):
             l=list(word); l[-1]='q'; return "".join(l)
-        if word.endswith('iy') | word.endswith('üy') | word.endswith('əy'):
+        if word.endswith('iy') or word.endswith('üy') or word.endswith('əy'):
             l=list(word); l[-1]='k'; return "".join(l)
         if word == 'ed':
             l=list(word); l[1]='t'; return "".join(l)
