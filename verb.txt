@@ -1,0 +1,31 @@
+﻿görmüşdüm görmüşdün görmüşdü görmüşdük görmüşdünüz görmüşdülər
+görmüşmüşəm görmüşmüşsən görmüşmüş görmüşmüşük görmüşmüşsünüz görmüşmüşlər
+görmüşəmmiş görmüşsənmiş görmüşmüş görmüşükmüş görmüşsünüzmüş görmüşlərmiş
+görübmüşəm görübmüşsən görübmüş görübmüşük görübmüşsünüz görübmüşlər
+görübsənmiş görübmüş görübsünüzmüş görüblərmiş
+görmüşəmsə görmüşsənsə görmüşsə görmüşüksə görmüşsünüzsə görmüşlərsə
+görübsənsə görübsə görübsünüzsə görüblərsə
+görürdüm görürdün görürdü görürdük görürdünüz görürdülər
+görürmüşəm görürmüşsən görürmüş görürmüşük görürmüşsünüz görürmüşlər
+görürəmmiş görürsənmiş görürmüş görürükmüş görürsünüzmüş görürlərmiş
+görürəmsə görürsənsə görürsə görürüksə görürsünüzsə görürlərsə
+görəcəkdim görəcəkdin görəcəkdi görəcəkdik görəcəkdiniz görəcəkdilər
+görəcəkmişəm görəcəkmişsən görəcəkmiş görəcəkmişik görəcəkmişsiniz görəcəkmişlər
+görəcəyəmmiş görəcəksənmiş görəcəkmiş görəcəyikmiş görəcəksinizmiş görəcəklərmiş
+görəcəyəmsə görəcəksənsə görəcəksə görəcəyiksə görəcəksinizsə görəcəklərsə
+görərdim görərdin görərdi görərdik görərdiniz görərdilər
+görərmişəm görərmişsən görərmiş görərmişik görərmişsiniz görərmişlər
+görərəmmiş görərsənmiş görərmiş görərikmiş görərsinizmiş görərlərmiş
+görərəmsə görərsənsə görərsə görəriksə görərsinizsə görərlərsə
+görəydim görəydin görəydi görəydik görəydiniz görəydilər
+görəymişəm görəymişsən görəymiş görəymişik görəymişsiniz görəymişlər
+görəmmiş görəsənmiş görəmiş görəkmiş görəsinizmiş görələrmiş
+görməliydim görməliydin görməliydi görməliydik görməliydiniz görməliydilər
+görməliymişəm görməliymişsən görməliymiş görməliymişik görməliymişsiniz görməliymişlər
+görməliyəmmiş görməlisənmiş görməliymiş görməliyikmiş görməlisinizmiş görməlilərmiş
+görməliyəmsə görməlisənsə görməlidirsə görməliyiksə görməlisinizsə görməlidirləsə
+görəsiydim görəsiydin görəsiydi görəsiydik görəsiydiniz görəsiydilər
+görəsiymişəm görəsiymişsən görəsiymiş görəsiymişik görəsiymişsiniz görəsiymişlər
+görəsiyəmmiş görəsisənmiş görəsiymiş görəsiyikmiş görəsisinizmiş görəsiylərmiş
+görsəydim görsəydin görsəydi görsəydik görsəydiniz görsəydilər
+görsəymişəm görsəymişsən görsəymiş görsəymişik görsəymişsiniz görsəymişlər
