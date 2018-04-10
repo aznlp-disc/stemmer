@@ -67,8 +67,6 @@ class Stemmer:
             l=list(word); l[-1]='q'; return "".join(l)
         if word.endswith('iy') or word.endswith('üy') or word.endswith('əy'):
             l=list(word); l[-1]='k'; return "".join(l)
-        if word.endswith('-cı') or word.endswith('-ci') or word.endswith('-cu') or word.endswith('-cü'):
-            l=list(word); l=l[:-3]; return "".join(l)
         if word == 'ed':
             l=list(word); l[1]='t'; return "".join(l)
         if word == 'ged':
