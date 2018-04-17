@@ -24,7 +24,7 @@ def pure_tag(word):
     i = word.find('{')
     return word[i:]
 
-dirnaqlar = {'”', '“', '"'}
+dirnaqlar = {'”', '“', '"', ','}
 
 #cleans the word from the left and tag from the right, returns the word and its tag in a list
 def word_and_tag(word):
@@ -36,7 +36,6 @@ def word_and_tag(word):
 
     i = word.find("{")
 
-    # print(word[:i], word[i:])
     return [word[:i], word[i:]]
 
 #when it is not the end of sentence - exceptions
@@ -76,27 +75,6 @@ class Matrix:
                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
     # returns a dictionary with words with frequency for each of 13 tags
-    def first_step(self, text):
-        st = Stemmer()
-        dic = {}
-        for t in text:
-            x = word_and_tag(t)
-            x[0] = st.stem_words([x[0]])[0]
-            try:
-                dic[x[0]][self.num_to_tags[x[1][1:-1]]] += 1
-            except Exception:
-                dic[x[0]] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                dic[x[0]][self.num_to_tags[x[1][1:-1]]] += 1
-
-        for i, j in dic.items():
-            for x in range(0, 13):
-                if self.cTag[x] != 0:
-                    j[x] /= self.cTag[x]
-                else:
-                    j[x] = 0.0
-
-        return dic
-
     def __init__(self, filename):
         with open(filename, "r", encoding = "utf-8-sig") as text:
             text = text.read()
@@ -119,7 +97,8 @@ class Matrix:
             else:
                 temp.append(pure_tag(t))
 
-        # print(self.tags)
+        for i in self.tags:
+            print(i)
 
         #count all tags
         for s in self.tags:
@@ -127,24 +106,28 @@ class Matrix:
                 try:
                     self.cTag[self.num_to_tags[t[1:-1]]] += 1
                 except Exception:
-                    pass
+                    print('...........................dsgsdgjdsgkj')
 
         # print(self.cTag)
 
         #count all binary relations in each sentence
-
         for s in self.tags:
             left = ''
-            right = ''
             for t in s:
-                left = right
                 right = t
+                # print(left, right)
                 try:
                     self.tMatrix[self.num_to_tags[left[1:-1]]][self.num_to_tags[right[1:-1]]] += 1
+                    # print('scheisse', self.num_to_tags[left[1:-1]], self.num_to_tags[right[1:-1]])
                 except Exception:
                     pass
+                    # print('nu ti dibil', left, right)
 
-        # print(self.tMatrix)
+                left = right
+
+
+        for i in self.tMatrix:
+            print(i)
 
         #get the transition matrix by dividing every element in tMatix by cTag of the row
 
@@ -168,11 +151,32 @@ class Matrix:
             tmp[stemmer.stem_words([i.lower()])[0]] = self.freq[i]
         self.freq = tmp
 
-        for i, j in self.freq.items():
-            print('second ',i, j)
+        # for i, j in self.freq.items():
+        #     print('second ',i, j)
 
         save_obj(self.freq, "freq")
         save_obj(self.tMatrix, "tMatrix")
+
+    def first_step(self, text):
+        st = Stemmer()
+        dic = {}
+        for t in text:
+            x = word_and_tag(t)
+            x[0] = st.stem_words([x[0]])[0]
+            try:
+                dic[x[0]][self.num_to_tags[x[1][1:-1]]] += 1
+            except Exception:
+                dic[x[0]] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                dic[x[0]][self.num_to_tags[x[1][1:-1]]] += 1
+
+        for i, j in dic.items():
+            for x in range(0, 13):
+                if self.cTag[x] != 0:
+                    j[x] /= self.cTag[x]
+                else:
+                    j[x] = 0.0
+
+        return dic
 
 
 
@@ -188,3 +192,6 @@ def load_obj(name ):
 temp = Matrix("korpusumuz.txt")
 for i in temp.tMatrix:
     print(i)
+print(temp.cTag)
+for i, j in temp.freq.items():
+    print(i, j)

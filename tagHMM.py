@@ -8,9 +8,12 @@ letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                'y', 'z', 'ü', 'ö', 'ğ', 'ə', 'ç', 'ş', 'ı',
                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'İ', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
                'V', 'X',
-               'Y', 'Z', 'Ü', 'Ö', 'Ğ', 'Ə', 'Ç', 'Ş', 'I', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+               'Y', 'Z', 'Ü', 'Ö', 'Ğ', 'Ə', 'Ç', 'Ş', 'I', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '%'
                ]
 
+def low(word):
+    word.replace("İ", "I")
+    return word
 
 def is_letter(x):
     for y in letters:
@@ -57,14 +60,17 @@ def upp(word):
     return word.upper()
 
 def clean_word(word):
-    word = "".join(c for c in word if (c not in punctuation) or (c == '-'))
-    while is_letter(word[0]) == False:
-        word = word[1:]
+    try:
+        word = "".join(c for c in word if (c not in punctuation) or (c == '-'))
+        while is_letter(word[0]) == False:
+            word = word[1:]
 
-    while is_letter(word[-1]) == False:
-        word = word[:-1]
-    print(word)
-    return word
+        while is_letter(word[-1]) == False:
+            word = word[:-1]
+        # print(word)
+        return word
+    except Exception:
+        return ''
 
 #we have to load "freq" and "tMatrix"
 def load_obj(name ):
@@ -80,7 +86,7 @@ class HmmTag:
     def __init__(self, lug):
         self.freq = load_obj("freq")
         for i in self.freq:
-            self.freq[i.lower()] = self.freq.pop(i)
+            self.freq[low(i).lower()] = self.freq.pop(i)
         self.tMatrix = load_obj("tMatrix")
         self.read_luget(lug)
 
@@ -112,7 +118,7 @@ class HmmTag:
         sentence = []
         for word in text:
             sentence.append(word)
-            if word.find(".") != -1 or word.find("?") != -1 or word.find("!") != -1:
+            if (word.find(".") != -1 or word.find("?") != -1 or word.find("!") != -1) and is_letter(word[-1]) == False:
                 sentences.append(sentence)
                 sentence = []
 
@@ -123,10 +129,12 @@ class HmmTag:
         for ss in sentences:
             tmp = []
             for s in ss:
-                tmp.append(stemmer.stem_words([clean_word(s)])[0])
+                ax = stemmer.stem_words([clean_word(s)])[0]
+                tmp.append(ax)
+                # print(ax)
+            print(tmp)
             stems.append(tmp)
 
-        print(stems)
         #list all possible tags for each word in each sentence
         tags = []
 
@@ -136,7 +144,7 @@ class HmmTag:
             for s in ss:
                 wd = []
                 try:
-                    tmp = self.freq[s.lower()]
+                    tmp = self.freq[low(s).lower()]
                     flag = 0
                     for i in range(0, 13):
                         if tmp[i] > 0.0:
@@ -144,22 +152,22 @@ class HmmTag:
                             wd.append(i)
                 except Exception:
                     #create it in freq dictionary - kind of workaround
+                    self.freq[low(s).lower()] = [1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13, 1/13]
                     try:
                         z = self.luget[upp(s)]
                         for a in z:
                             wd.append(num_to_tags[a])
                     except Exception:
                         pass
-                    # self.freq[s] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-
                 snt.append(wd)
             tags.append(snt)
-        print(tags)
+        # print(tags)
 
         # Here we will apply HMM and put the final answer into final_tags
         final_tags = []
         #each sentence
         for i in range(0, len(tags)):
+            # print(tags[i])
             cumle = []
             #each word
             #only first word
@@ -167,7 +175,8 @@ class HmmTag:
                 mx = -1
                 ind = 0
                 index = 0
-                for x in self.freq[stems[i][0].lower()]:
+                # print(stems[i])
+                for x in self.freq[low(stems[i][0]).lower()]:
                     if x > mx:
                         mx = x
                         index = ind
@@ -182,7 +191,9 @@ class HmmTag:
                     mx = -1
                     ind = 0
                     index = 0
-                    for x in self.freq[stems[i][j].lower()]:
+                    print(len(low(stems[i][j]).lower()))
+                    print(tags[i][j])
+                    for x in self.freq[low(stems[i][j]).lower()]:
                         if x > mx:
                             mx = x
                             index = ind
@@ -194,15 +205,15 @@ class HmmTag:
                     ind_of_max = 0
                     #iterate over tags of the word
                     for e in tags[i][j]:
-                        m = self.tMatrix[tags[i][j-1][0]][e] * self.freq[stems[i][j].lower()][e]
+                        m = self.tMatrix[tags[i][j-1][0]][e] * self.freq[low(stems[i][j]).lower()][e]
                         if m > maximum:
                             maximum = m
                             ind_of_max = e
 
                     tags[i][j] = [ind_of_max]
         save(save_file, sentences, tags)
-        print(sentences)
-        print(tags)
+        # print(sentences)
+        # print(tags)
 
 
 def save(save_file, sentences, tags):
@@ -228,4 +239,4 @@ def save(save_file, sentences, tags):
 
 
 abc = HmmTag("fi.csv")
-abc.tag_text("yoxla.txt", "finally.txt")
+abc.tag_text("Rasim.txt", "Rasim_duzelt.txt")
