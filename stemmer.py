@@ -10,9 +10,9 @@ class Stemmer:
     # Constructor of the Stemmer class
     def __init__(self):
         # Loads words from the words.txt file
-        self.load_words()
+        self.__load_words()
         # Loads suffixes from the suffix.txt file
-        self.load_suffixes()
+        self.__load_suffixes()
 
     # Destructor of the Stemmer class
     def __del__(self):
@@ -21,7 +21,7 @@ class Stemmer:
         self.suffixes.clear()
 
     # Loads the words from the word.txt file into memory
-    def load_words(self):
+    def __load_words(self):
         # Open words.txt file in read mode with utf-8 encoding.
         with open("words.txt", "r", encoding="utf8") as words_file:
             # Iterate over each line in the words.txt file
@@ -30,7 +30,7 @@ class Stemmer:
                 self.words.add(word.strip())
 
     # Loads the suffixes from the suffix.txt file into memory
-    def load_suffixes(self):
+    def __load_suffixes(self):
         # Open suffix.txt file in read mode with utf-8 encoding
         with open("suffix.txt", "r", encoding="utf8") as suffix_file:
             # Iterate over each line in the suffix.txt file
