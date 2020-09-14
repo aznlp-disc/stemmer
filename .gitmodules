@@ -1,0 +1,3 @@
+[submodule "names"]
+	path = names
+	url = git@github.com:aznlp/names.git
