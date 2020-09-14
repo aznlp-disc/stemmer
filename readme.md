@@ -2,6 +2,20 @@
 
 Stemmer for Azerbaijani language written in Python.
 
+## Usage
+```
+root  
+└── stemmer  
+└── yourmain.py  
+└── ...
+```  
+```python
+from stemmer import Stemmer
+
+stemmer = Stemmer()
+lst = stemmer.stem_words(["nümunə",])
+```
+
 ## Installation
 
 The package will be published on PyPI after finishing the development of the first fully working version. 
