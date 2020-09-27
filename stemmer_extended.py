@@ -20,6 +20,27 @@ class StemmerV2(Stemmer):
                 names_list.union(set(x.lower().strip() for x in names_female))
         return names_list
 
+    def stem_words(self, list_of_phrases):
+
+        # handling multiple word phrases:
+        phrase_endings = []
+        phrase_starts = []
+        for phrase in list_of_phrases:
+            phrase_parts = phrase.split()
+            phrase_endings.append(phrase_parts[-1])
+            phrase_starts.append(" ".join(phrase_parts[:-1]))
+        list_of_stems = super().stem_words(phrase_endings)
+
+        assert len(list_of_stems) == len(phrase_endings)
+        retval = []
+        for start, end in zip(phrase_starts,list_of_stems):
+            if start:
+                retval.append(" ".join([start,end]))
+            else:
+                retval.append(end)
+
+        return retval
+    
 
 
 
